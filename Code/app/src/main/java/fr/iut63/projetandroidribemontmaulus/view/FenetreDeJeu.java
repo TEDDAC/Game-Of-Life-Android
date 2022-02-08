@@ -15,7 +15,7 @@ import fr.iut63.projetandroidribemontmaulus.R;
 
 public class FenetreDeJeu extends AppCompatActivity {
 
-
+    //j'ai pas compris ce que t'as cherché à faire. Pour dessiner une grille, on doit créer un Custom View: https://developer.android.com/guide/topics/ui/custom-components
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
