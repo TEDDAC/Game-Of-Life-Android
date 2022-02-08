@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickButton(View view) {
+        // Test a supprimer
+
+        PrimeThread p = new PrimeThread(1);
+        new Thread(p).start();
         Intent monIntent = new Intent(this, FenetreDeJeu.class);
         startActivity(monIntent);
     }

@@ -1,7 +1,12 @@
 package fr.iut63.projetandroidribemontmaulus.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,5 +54,16 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d("LogAppVie", "onDestroy2");
+    }
+
+
+    public void clickButtonGenerate(View view) {
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setTextColor(4);
+    }
+
+    public void clickSelect(View view) {
+        Button button = (Button) findViewById((R.id.button10));
+        button.setBackgroundColor(9);
     }
 }
