@@ -62,8 +62,4 @@ public class FenetreDeJeu extends AppCompatActivity {
         textView.setTextColor(4);
     }
 
-    public void clickSelect(View view) {
-        Button button = (Button) findViewById((R.id.button10));
-        button.setBackgroundColor(9);
-    }
 }

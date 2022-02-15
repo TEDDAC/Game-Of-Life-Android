@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../../../layout/custom_preview.xml" value="0.22552083333333334" />
+        <entry key="../../../../../../../../layout/custom_preview.xml" value="0.21" />
+        <entry key="../../../../../../../etud/mamaulus1/2A/Android/Projet/projetandoidribemontmaulus/Code/app/src/main/res/drawable/custom_background.xml" value="0.21354166666666666" />
         <entry key="../../../../../../../etud/mamaulus1/2A/Android/Projet/projetandoidribemontmaulus/Code/app/src/main/res/drawable/custom_button.xml" value="0.18703703703703703" />
+        <entry key="../../../../../../../etud/mamaulus1/2A/Android/Projet/projetandoidribemontmaulus/Code/app/src/main/res/drawable/custom_title.xml" value="0.21354166666666666" />
         <entry key="../../../../../../../etud/mamaulus1/2A/Android/Projet/projetandoidribemontmaulus/Code/app/src/main/res/layout/fenetredejeu.xml" value="0.35520833333333335" />
         <entry key="../../../../../../../etud/mamaulus1/2A/Android/Projet/projetandoidribemontmaulus/Code/app/src/main/res/layout/mainwindow.xml" value="0.33" />
         <entry key="../../../../../../../etud/maribemont/Documents/2A/mobile/projetandoidribemontmaulus/Code/app/src/main/res/layout/fenetredejeu.xml" value="0.33" />

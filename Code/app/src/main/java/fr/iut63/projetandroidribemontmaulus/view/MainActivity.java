@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.mainwindow);
 
+        PrimeThread p = new PrimeThread(5000);
+        new Thread(p).start();
     }
 
     @Override
@@ -55,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickButton(View view) {
         // Test a supprimer
-
-        PrimeThread p = new PrimeThread(1);
-        new Thread(p).start();
         Intent monIntent = new Intent(this, FenetreDeJeu.class);
         startActivity(monIntent);
     }

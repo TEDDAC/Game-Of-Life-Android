@@ -20,6 +20,7 @@
         <activity android:name=".view.FenetreDeJeu" android:exported="true">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".view.MainActivity"></meta-data>
         </activity>
+
     </application>
 
 
