@@ -56,10 +56,4 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LogAppVie", "onDestroy2");
     }
 
-
-    public void clickButtonGenerate(View view) {
-        TextView textView = (TextView) findViewById(R.id.textView2);
-        textView.setTextColor(4);
-    }
-
 }
