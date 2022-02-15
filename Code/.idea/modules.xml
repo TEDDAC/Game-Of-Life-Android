@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/547233701/ProjetAndroidRibemontMaulus.iml" filepath="$PROJECT_DIR$/.idea/modules/547233701/ProjetAndroidRibemontMaulus.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1604492471/ProjetAndroidRibemontMaulus.app.iml" filepath="$PROJECT_DIR$/.idea/modules/1604492471/ProjetAndroidRibemontMaulus.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Code.iml" filepath="$PROJECT_DIR$/.idea/Code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-425254076/ProjetAndroidRibemontMaulus.iml" filepath="$PROJECT_DIR$/.idea/modules/-425254076/ProjetAndroidRibemontMaulus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/741521622/ProjetAndroidRibemontMaulus.app.iml" filepath="$PROJECT_DIR$/.idea/modules/741521622/ProjetAndroidRibemontMaulus.app.iml" />
     </modules>
   </component>
 </project>
