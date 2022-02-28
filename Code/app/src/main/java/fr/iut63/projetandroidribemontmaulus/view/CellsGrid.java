@@ -14,9 +14,9 @@ public class CellsGrid extends View { //custome view
     private Paint paint;
     private int nbCellX = 10;
     private int nbCellY = 20;
-    private int sizeCellX = 30;
-    private int sizeCellY = 30;
-    private int spacing = 5;
+    private int sizeCell = 60;
+    //private int sizeCellY = 50;
+    private int spacing = 100;
 
     public CellsGrid(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -35,7 +35,7 @@ public class CellsGrid extends View { //custome view
         Log.d("Custom View","onDraw");
         for(int x = 0;x<nbCellX;x++){
             for(int y = 0;y<nbCellY;y++) {
-                canvas.drawRect(x * 25, y*25, 20 + x * 25, 20+y*25, paint);
+                canvas.drawRect(x * spacing, y*spacing, sizeCell + x * spacing, sizeCell+y*spacing, paint);
                 Log.d("Custom View","Carré déssiné");
             }
         }

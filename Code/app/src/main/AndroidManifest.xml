@@ -21,6 +21,10 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".view.MainActivity"></meta-data>
         </activity>
 
+        <activity android:name=".view.PageSetting" android:exported="true">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".view.FenetreDeJeu"></meta-data>
+        </activity>
+
     </application>
 
 
