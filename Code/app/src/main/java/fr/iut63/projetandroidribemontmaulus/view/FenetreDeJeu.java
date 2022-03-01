@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import fr.iut63.projetandroidribemontmaulus.R;
 
 public class FenetreDeJeu extends AppCompatActivity {
-    Manager manager = new Manager();
+//    Manager manager = new Manager();
+    public CellsGrid cellsGrid;
+
     boolean play = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +25,27 @@ public class FenetreDeJeu extends AppCompatActivity {
         // ------------------
 
         setContentView(R.layout.fenetredejeu);
+        cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
+        final Button playButton = (Button)findViewById(R.id.playButton);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CellsGrid cellsGrid/* = (CellsGrid)(view.getParent())*/;
+                cellsGrid.drawCells(5,5,true);
+                cellsGrid.drawCells(6,5,true);
+                Log.d("PlayButton OnClick","Clicked");
+                if(!play){
+                    play=true;
+//            manager.launchThread();
+//            ((Button)findViewById(R.id.playButton)).setText("STOP");
+                }else{
+                    play=false;
+//            manager.stopThread();
+//            ((Button)findViewById(R.id.playButton)).setText("PLAY");
 
+                }
+            }
+        });
     }
 
     @Override
@@ -59,20 +81,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     public void clickButtonSetting(View view) {
         Intent monIntent = new Intent(this, PageSetting.class);
         startActivity(monIntent);
-        manager.stopThread();
-    }
-
-    public void playButton(View view){
-        if(!play){
-            play=true;
-            manager.launchThread();
-            ((Button)findViewById(R.id.playButton)).setText("STOP");
-        }else{
-            play=false;
-            manager.stopThread();
-            ((Button)findViewById(R.id.playButton)).setText("PLAY");
-
-        }
+//        manager.stopThread();
     }
 
 }

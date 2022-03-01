@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ProjetAndroidRibemontMaulus</string>
+    <string name="settings">Paramètres</string>
+    <string name="howManyNeighboorToBorn">Nombre de voisines pour naître</string>
+    <string name="howManyNeighboorToSurvive">Nombre de voisines pour survivre</string>
+    <string name="rulePresets">Préréglages de règles</string>
+    <string name="speed">Vitesse</string>
+    <string name="play">Play</string>
 </resources>

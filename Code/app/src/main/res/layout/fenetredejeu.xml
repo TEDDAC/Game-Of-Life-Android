@@ -29,15 +29,14 @@
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="playButton"
-            android:text="Play" />
+            android:text="@string/play" />
 
         <Button
             android:id="@+id/optionButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:onClick="clickButtonSetting"
-            android:text="Options" />
+            android:text="@string/settings" />
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -52,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
-        android:text="Vitesse"
+        android:text="@string/speed"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent" />
 
