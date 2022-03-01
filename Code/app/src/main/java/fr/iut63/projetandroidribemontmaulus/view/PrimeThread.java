@@ -4,13 +4,15 @@ import android.util.Log;
 
 public class PrimeThread implements Runnable{
     long minPrime;
+    public boolean running = true;
+
     PrimeThread(long minPrime){
         this.minPrime = minPrime;
     }
 
     public void run(){
         Log.d("Thread","Test du thread");
-        while (true){
+        while (running){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

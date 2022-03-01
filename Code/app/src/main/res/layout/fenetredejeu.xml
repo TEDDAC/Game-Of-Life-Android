@@ -29,14 +29,15 @@
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="playButton"
             android:text="Play" />
 
         <Button
             android:id="@+id/optionButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:onClick="clickButtonJeu"
-            android:text="options" />
+            android:onClick="clickButtonSetting"
+            android:text="Options" />
 
         <SeekBar
             android:id="@+id/seekBar"

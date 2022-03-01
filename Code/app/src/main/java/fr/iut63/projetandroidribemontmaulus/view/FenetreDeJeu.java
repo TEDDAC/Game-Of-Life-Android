@@ -14,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import fr.iut63.projetandroidribemontmaulus.R;
 
 public class FenetreDeJeu extends AppCompatActivity {
-
+    Manager manager = new Manager();
+    boolean play = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +56,23 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LogAppVie", "onDestroy2");
     }
 
-    public void clickButtonJeu(View view) {
+    public void clickButtonSetting(View view) {
         Intent monIntent = new Intent(this, PageSetting.class);
         startActivity(monIntent);
+        manager.stopThread();
     }
+
+    public void playButton(View view){
+        if(!play){
+            play=true;
+            manager.launchThread();
+            ((Button)findViewById(R.id.playButton)).setText("STOP");
+        }else{
+            play=false;
+            manager.stopThread();
+            ((Button)findViewById(R.id.playButton)).setText("PLAY");
+
+        }
+    }
+
 }

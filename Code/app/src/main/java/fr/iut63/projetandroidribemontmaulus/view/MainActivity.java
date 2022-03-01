@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity {
         // ------------------
 
         setContentView(R.layout.mainwindow);
-
-        PrimeThread p = new PrimeThread(5000);
-        new Thread(p).start();
     }
 
     @Override
