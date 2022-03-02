@@ -48,7 +48,7 @@ public class CellsGrid extends View { //custome view
                     this.drawCells(x,y,true);
                 else this.drawCells(x,y,false);
 
-                Log.d("Custom View","Carré déssiné");
+                //Log.d("Custom View","Carré déssiné");
             }
         }
     }
@@ -63,7 +63,7 @@ public class CellsGrid extends View { //custome view
         super.onSizeChanged(w, h, oldw, oldh);
     }
 
-    // sert à dessiner une seule cellule de coordonnées x
+    // ne pas utiliser manuellement, uniquement dans le ondraw
     public void drawCells(int x, int y, boolean alive){
         int left = (this.sizeCell + this.spacing)*x;
         int top = (this.sizeCell + this.spacing)*y;
@@ -72,7 +72,7 @@ public class CellsGrid extends View { //custome view
         if(alive){
             this.paint.setColor(0xff000000);
         } else this.paint.setColor(0xffffffff);
-        Log.d("CellsGrid drawCells","Draw: "+x+" "+y);
+        //Log.d("CellsGrid drawCells","Draw: "+x+" "+y);
         this.canvas.drawRect(left, top, right, bottom, this.paint);
     }
 }

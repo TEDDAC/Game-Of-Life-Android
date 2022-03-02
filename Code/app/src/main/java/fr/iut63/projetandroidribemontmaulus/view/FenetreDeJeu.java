@@ -12,17 +12,30 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut63.projetandroidribemontmaulus.R;
+import modele.*;
 
 public class FenetreDeJeu extends AppCompatActivity {
 //    Manager manager = new Manager();
     public CellsGrid cellsGrid;
-
+    private Thread thread;
     boolean play = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // ------------------
+        //instantiation de tous le modèle
+        Monde monde = new Monde(30,30);
+        //initialisation du tableau de proprieté au démarrage (règle de naissances)
+        boolean[] born = new boolean[9];
+        born[3] = true;
+        //initialisation du tableau de proprieté au démarrage (règle de survie)
+        boolean[] survive = new boolean[9];
+        survive[2] = true;
+        survive[3] = true;
+
+        Rules rules = new Rules(born,survive);
+        Dieu dieu = new Dieu(monde, rules);
+
 
         setContentView(R.layout.fenetredejeu);
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
@@ -30,22 +43,17 @@ public class FenetreDeJeu extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CellsGrid cellsGrid/* = (CellsGrid)(view.getParent())*/;
-                cellsGrid.drawCells(5,5,true);
-                cellsGrid.drawCells(6,5,true);
+                final CellsGrid cellsGrid = (CellsGrid)findViewById(R.id.cellsGrid);
+                cellsGrid.invalidate(); //force la view à ce redraw
                 Log.d("PlayButton OnClick","Clicked");
                 if(!play){
                     play=true;
-//            manager.launchThread();
-//            ((Button)findViewById(R.id.playButton)).setText("STOP");
                 }else{
                     play=false;
-//            manager.stopThread();
-//            ((Button)findViewById(R.id.playButton)).setText("PLAY");
-
                 }
             }
         });
+
     }
 
     @Override
