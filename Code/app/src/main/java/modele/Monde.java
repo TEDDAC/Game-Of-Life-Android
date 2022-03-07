@@ -3,7 +3,7 @@ package modele;
 public class Monde{
 
     /**
-     * Taille X de la grille de cellule. Bind sur un spinner dans la vue.
+     * Taille X de la grille de cellule. Bind sur un spinner dans la vue. //A CHANGER pour android studio => CustomView
      */
     private int tailleX;
 
