@@ -1,6 +1,5 @@
 package fr.iut63.projetandroidribemontmaulus.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +8,14 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut63.projetandroidribemontmaulus.R;
-import modele.*;
+import modele.Dieu;
+import modele.Monde;
+import modele.Rules;
 
 public class FenetreDeJeu extends AppCompatActivity {
 //    Manager manager = new Manager();
@@ -63,7 +65,7 @@ public class FenetreDeJeu extends AppCompatActivity {
         Dieu dieu = new Dieu(monde, rules);
 
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
-        final Button playButton = (Button)findViewById(R.id.playButton);
+        final Button playButton = (Button)findViewById(R.id.startButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +79,6 @@ public class FenetreDeJeu extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
@@ -110,11 +111,16 @@ public class FenetreDeJeu extends AppCompatActivity {
         Log.d("LogAppVie", "onDestroy2");
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
     public void clickButtonSetting(View view) {
         Intent monIntent = new Intent(this, PageSetting.class);
         startActivity(monIntent);
-//        manager.stopThread();
     }
+
 
     public int getValueSeekBar(View view){
         SeekBar seek = (SeekBar) findViewById(R.id.seekBar);

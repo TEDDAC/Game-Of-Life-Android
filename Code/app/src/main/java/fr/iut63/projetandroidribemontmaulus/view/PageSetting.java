@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,6 +49,12 @@ public class PageSetting extends AppCompatActivity {
         super.onDestroy();
         Log.d("LogAppVie","onDestroy");
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
 
     public void clickBack(View view) {
         Intent monIntent = new Intent(this, FenetreDeJeu.class);
@@ -149,6 +156,4 @@ public class PageSetting extends AppCompatActivity {
         }
         return rulesMort;
     }
-
-
 }
