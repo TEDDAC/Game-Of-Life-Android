@@ -36,6 +36,7 @@ public class FenetreDeJeu extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 seekBarValue.setText(String.valueOf(progress));
+                FenetreDeJeu.boucleDeJeu.setTime(500 - 490*progress/100);
             }
 
             @Override
@@ -80,10 +81,12 @@ public class FenetreDeJeu extends AppCompatActivity {
         thread.start();
         playButton.setOnClickListener(view -> {
             Log.d("PlayButton OnClick","Clicked");
-            if(!FenetreDeJeu.boucleDeJeu.getPlayed()){
+            if(!FenetreDeJeu.boucleDeJeu.getPlayed()){ //stopped
                 FenetreDeJeu.boucleDeJeu.setPlayed(true);
-            }else{
-                FenetreDeJeu.boucleDeJeu.setPlayed(true);
+                playButton.setText(R.string.Stop);
+            }else{ //Played
+                FenetreDeJeu.boucleDeJeu.setPlayed(false);
+                playButton.setText(R.string.Play);
             }
         });
     }
