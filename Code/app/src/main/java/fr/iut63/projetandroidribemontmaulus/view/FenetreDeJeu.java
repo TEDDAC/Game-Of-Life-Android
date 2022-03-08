@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,31 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fenetredejeu);
+
+
+        //Instantiation de la seekBar
+        SeekBar seekBar = (SeekBar)findViewById(R.id.seekBar);
+        //Instantiation du texte pour afficher la vitesse
+        final TextView seekBarValue = (TextView)findViewById(R.id.textViewVitesse);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                seekBarValue.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
         //instantiation de tous le modèle
         Monde monde = new Monde(30,30);
@@ -36,8 +62,6 @@ public class FenetreDeJeu extends AppCompatActivity {
         Rules rules = new Rules(born,survive);
         Dieu dieu = new Dieu(monde, rules);
 
-
-        setContentView(R.layout.fenetredejeu);
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
         final Button playButton = (Button)findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -92,5 +116,10 @@ public class FenetreDeJeu extends AppCompatActivity {
 //        manager.stopThread();
     }
 
+    public int getValueSeekBar(View view){
+        SeekBar seek = (SeekBar) findViewById(R.id.seekBar);
+        int seekValue = seek.getProgress();
+        return seekValue;
+    }
 
 }

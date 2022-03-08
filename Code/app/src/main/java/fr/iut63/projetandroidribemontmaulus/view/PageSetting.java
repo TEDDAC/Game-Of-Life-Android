@@ -54,78 +54,101 @@ public class PageSetting extends AppCompatActivity {
         startActivity(monIntent);
     }
 
-    public int recupNbVoisinNaissance(View view){
+    public boolean[] recupNbVoisinNaissance(View view) {
         boolean checked = ((CheckBox) view).isChecked();
-        int nbVoisin = 0;
-        switch (view.getId()){
+        boolean[] rulesVoisin = new boolean[9];
+        switch (view.getId()) {
+            case R.id.checkBox_0_Voisin_Naitre:
+                if (checked) {
+                    rulesVoisin[0] = true;
+                }
             case R.id.checkBox_1_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 1;
+                if (checked) {
+                    rulesVoisin[1] = true;
                 }
             case R.id.checkBox_2_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 2;
+                if (checked) {
+                    rulesVoisin[2] = true;
                 }
 
             case R.id.checkBox_3_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 3;
+                if (checked) {
+                    rulesVoisin[3] = true;
                 }
 
             case R.id.checkBox_4_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 4;
+                if (checked) {
+                    rulesVoisin[4] = true;
                 }
 
             case R.id.checkBox_5_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 5;
+                if (checked) {
+                    rulesVoisin[5] = true;
                 }
 
             case R.id.checkBox_6_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 6;
+                if (checked) {
+                    rulesVoisin[6] = true;
                 }
 
             case R.id.checkBox_7_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 7;
+                if (checked) {
+                    rulesVoisin[7] = true;
                 }
 
             case R.id.checkBox_8_Voisin_Naitre:
-                if (checked){
-                    nbVoisin = 8;
+                if (checked) {
+                    rulesVoisin[8] = true;
                 }
         }
-        return nbVoisin;
+        return rulesVoisin;
+    }
 
+    public boolean[] recupNbVoisinMort(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+        boolean[] rulesMort = new boolean[9];
+        switch (view.getId()) {
+            case R.id.checkBox_1_Voisin_Survie:
+                if (checked) {
+                    rulesMort[1] = true;
+                }
+
+            case R.id.checkBox_2_Voisin_Survie:
+                if (checked) {
+                    rulesMort[2] = true;
+                }
+
+            case R.id.checkBox_3_Voisin_Survie:
+                if (checked) {
+                    rulesMort[3] = true;
+                }
+
+            case R.id.checkBox_4_Voisin_Survie:
+                if (checked) {
+                    rulesMort[4] = true;
+                }
+
+            case R.id.checkBox_5_Voisin_Survie:
+                if (checked) {
+                    rulesMort[5] = true;
+                }
+
+            case R.id.checkBox_6_Voisin_Survie:
+                if (checked) {
+                    rulesMort[6] = true;
+                }
+
+            case R.id.checkBox_7_Voisin_Survie:
+                if (checked) {
+                    rulesMort[7] = true;
+                }
+            case R.id.checkBox_8_Voisin_Survie:
+                if (checked) {
+                    rulesMort[8] = true;
+                }
+        }
+        return rulesMort;
     }
 
 
-
-    /*
-    public void onCheckboxClicked(View view) {
-    // Is the view now checked?
-    boolean checked = ((CheckBox) view).isChecked();
-
-    // Check which checkbox was clicked
-    switch(view.getId()) {
-        case R.id.checkbox_meat:
-            if (checked)
-                // Put some meat on the sandwich
-            else
-                // Remove the meat
-            break;
-        case R.id.checkbox_cheese:
-            if (checked)
-                // Cheese me
-            else
-                // I'm lactose intolerant
-            break;
-        // TODO: Veggie sandwich
-}
-
-
-
-     */
 }
