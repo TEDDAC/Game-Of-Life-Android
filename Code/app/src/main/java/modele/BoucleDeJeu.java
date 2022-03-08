@@ -1,12 +1,18 @@
 package modele;
 
+import fr.iut63.projetandroidribemontmaulus.view.CellsGrid;
+
 public class BoucleDeJeu implements Runnable{
+
     /**
      * Instance du dieu
      */
     private final Dieu dieu;
+    private CellsGrid cellsGrid;
 
     private boolean enable;
+    public boolean isEnable(){ return enable; }
+    public void setEnable(boolean value){ this.enable = value; }
 
     /**
      * Indique à la pause si elle est lancé ou non
@@ -39,6 +45,7 @@ public class BoucleDeJeu implements Runnable{
             if(BoucleDeJeu.getPlayed()){
                 dieu.evolution();
                 dieu.updateCells();
+                cellsGrid.invalidate();
             }
             try { //ne pas mettre dans la boucle, sinon ça ne tourne pas
                 Thread.sleep(getTime());
@@ -58,5 +65,9 @@ public class BoucleDeJeu implements Runnable{
 
     public void stop(){
         this.enable = false;
+    }
+
+    public void setCellsGrid(CellsGrid cellsGrid) {
+        this.cellsGrid = cellsGrid;
     }
 }

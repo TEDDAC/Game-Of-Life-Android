@@ -12,6 +12,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import fr.iut63.projetandroidribemontmaulus.R;
+import modele.Cellule;
+import modele.Dieu;
+import modele.Monde;
 
 public class CellsGrid extends View { //custome view
     private Paint paint;
@@ -38,17 +41,13 @@ public class CellsGrid extends View { //custome view
         this.canvas = canvas;
         Log.d("Custom View","onDraw");
 
-        int alive;
-        for(int x = 0;x<nbCellX;x++){
-            for(int y = 0;y<nbCellY;y++) {
-
-                //le morceau en dessous, c'est juste pour tester la méthode drawCells
-                alive = (x+y)%2;
-                if(alive == 1)
-                    this.drawCells(x,y,true);
-                else this.drawCells(x,y,false);
-
-                //Log.d("Custom View","Carré déssiné");
+        Monde monde = Dieu.getDieu().getMonde();
+        Log.d("Dessin de la grille","TailleX: "+monde.getTailleX() + "  TailleY: "+monde.getTailleY());
+        Log.d("Dessin de la grille",monde.getGrille().toString());
+        for(int x=0;x<monde.getTailleX();x++){
+            for(int y=0;y<monde.getTailleY();y++){
+                Log.d("Dessin de la grille",x+" : "+y+"  Alive: "+monde.getGrille()[x][y].isAlive());
+                drawCells(x,y,monde.getGrille()[x][y].isAlive());
             }
         }
     }

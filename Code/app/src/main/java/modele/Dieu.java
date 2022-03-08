@@ -1,18 +1,22 @@
 package modele;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 
 public class Dieu {
+    public static Dieu dieuInstance;
+
     /**
      * Contient la grille de cellule et ses dimensions
      */
-    public static Monde monde;
+    private Monde monde;
     /**
      * Contient les règles de naissance et de survie de cellules
      */
-    public static Rules rules;
+    private Rules rules;
 
     /**
      * Contient les cellules qui ont été traitées, et dont le prochain état a est determiné
@@ -28,12 +32,23 @@ public class Dieu {
         this.monde = monde;
         this.rules = rules;
         this.traite = new ArrayList<>();
+        this.dieuInstance = this;
+    }
+
+    public static Dieu getDieu(){
+        if(dieuInstance != null){
+            return dieuInstance;
+        } else {
+            Log.d("getDieu","Nouveau dieu créé");
+            dieuInstance = new Dieu(null, null);
+            return dieuInstance;
+        }
     }
 
     /**
      * permet de tuer toutes les cellules, donc de nettoyer la grille
      */
-    public static void clearGrid() {
+    public void clearGrid() {
         for(int x=0;x<monde.getTailleX();x++){
             for(int y=0;y<monde.getTailleY();y++){
                 monde.getGrille()[x][y].setAlive(false);

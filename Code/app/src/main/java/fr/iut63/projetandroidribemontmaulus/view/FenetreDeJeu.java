@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut63.projetandroidribemontmaulus.R;
+import modele.BoucleDeJeu;
 import modele.Dieu;
 import modele.Monde;
 import modele.Rules;
@@ -20,8 +21,7 @@ import modele.Rules;
 public class FenetreDeJeu extends AppCompatActivity {
 //    Manager manager = new Manager();
     public CellsGrid cellsGrid;
-    private Thread thread;
-    boolean play = false;
+    public static BoucleDeJeu boucleDeJeu;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class FenetreDeJeu extends AppCompatActivity {
 
 
         //instantiation de tous le modèle
-        Monde monde = new Monde(30,30);
+        Monde monde = new Monde(20,30);
         //initialisation du tableau de proprieté au démarrage (règle de naissances)
         boolean[] born = new boolean[9];
         born[3] = true;
@@ -61,22 +61,29 @@ public class FenetreDeJeu extends AppCompatActivity {
         survive[2] = true;
         survive[3] = true;
 
+        monde.getGrille()[0][2].setAlive(true);
+        monde.getGrille()[1][2].setAlive(true);
+        monde.getGrille()[2][2].setAlive(true);
+        monde.getGrille()[2][1].setAlive(true);
+        monde.getGrille()[1][0].setAlive(true);
+
         Rules rules = new Rules(born,survive);
         Dieu dieu = new Dieu(monde, rules);
+        Log.d("Fenetre de jeu","Dieu créé");
 
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
         final Button playButton = (Button)findViewById(R.id.startButton);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final CellsGrid cellsGrid = (CellsGrid)findViewById(R.id.cellsGrid);
-                cellsGrid.invalidate(); //force la view à ce redraw
-                Log.d("PlayButton OnClick","Clicked");
-                if(!play){
-                    play=true;
-                }else{
-                    play=false;
-                }
+
+        boucleDeJeu = new BoucleDeJeu(dieu);
+        boucleDeJeu.setCellsGrid(cellsGrid);
+        Thread thread = new Thread(boucleDeJeu);
+        thread.start();
+        playButton.setOnClickListener(view -> {
+            Log.d("PlayButton OnClick","Clicked");
+            if(!FenetreDeJeu.boucleDeJeu.getPlayed()){
+                FenetreDeJeu.boucleDeJeu.setPlayed(true);
+            }else{
+                FenetreDeJeu.boucleDeJeu.setPlayed(true);
             }
         });
     }
@@ -84,31 +91,32 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("LogAppVie", "onStart2");
+        Log.d("LogAppVie", "onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("LogAppVie", "onResume2");
+        Log.d("LogAppVie", "onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("LogAppVie", "onPause2");
+        Log.d("LogAppVie", "onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("LogAppVie", "onStop2");
+        Log.d("LogAppVie", "onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("LogAppVie", "onDestroy2");
+        Log.d("LogAppVie", "onDestroy");
+        FenetreDeJeu.boucleDeJeu.setEnable(false);
     }
 
     @Override

@@ -25,7 +25,8 @@ public class Monde{
      * @param tailleY Taille Y du monde
      */
     public Monde(int tailleX, int tailleY) {
-        setTailleX(tailleX);
+        this.tailleX = tailleX;
+        this.tailleY = tailleY;
         setTailleY(tailleY);
         grille = GrilleCellFactory.createCellGrid(tailleX,tailleY);
     }
@@ -55,7 +56,7 @@ public class Monde{
     }
 
     public void setTailleY(int tailleY){
-        this.tailleX = tailleY;
+        this.tailleY = tailleY;
     }
 
     public int getTailleY(){
