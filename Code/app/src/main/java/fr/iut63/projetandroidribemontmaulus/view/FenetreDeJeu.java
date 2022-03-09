@@ -50,28 +50,7 @@ public class FenetreDeJeu extends AppCompatActivity {
             }
         });
 
-
-
-        //instantiation de tous le modèle
-        Monde monde = new Monde(20,30);
-        //initialisation du tableau de proprieté au démarrage (règle de naissances)
-        boolean[] born = new boolean[9];
-        born[3] = true;
-        //initialisation du tableau de proprieté au démarrage (règle de survie)
-        boolean[] survive = new boolean[9];
-        survive[2] = true;
-        survive[3] = true;
-
-        monde.getGrille()[0][2].setAlive(true);
-        monde.getGrille()[1][2].setAlive(true);
-        monde.getGrille()[2][2].setAlive(true);
-        monde.getGrille()[2][1].setAlive(true);
-        monde.getGrille()[1][0].setAlive(true);
-
-        Rules rules = new Rules(born,survive);
-        Dieu dieu = new Dieu(monde, rules);
-        Log.d("Fenetre de jeu","Dieu créé");
-
+        Dieu dieu = Dieu.getDieu();
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
         final Button playButton = (Button)findViewById(R.id.startButton);
 
@@ -106,6 +85,7 @@ public class FenetreDeJeu extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        FenetreDeJeu.boucleDeJeu.setPlayed(false);
         Log.d("LogAppVie", "onPause");
     }
 

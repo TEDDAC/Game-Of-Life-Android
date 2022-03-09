@@ -42,11 +42,11 @@ public class CellsGrid extends View { //custome view
         Log.d("Custom View","onDraw");
 
         Monde monde = Dieu.getDieu().getMonde();
-        Log.d("Dessin de la grille","TailleX: "+monde.getTailleX() + "  TailleY: "+monde.getTailleY());
-        Log.d("Dessin de la grille",monde.getGrille().toString());
+//        Log.d("Dessin de la grille","TailleX: "+monde.getTailleX() + "  TailleY: "+monde.getTailleY());
+//        Log.d("Dessin de la grille",monde.getGrille().toString());
         for(int x=0;x<monde.getTailleX();x++){
             for(int y=0;y<monde.getTailleY();y++){
-                Log.d("Dessin de la grille",x+" : "+y+"  Alive: "+monde.getGrille()[x][y].isAlive());
+//                Log.d("Dessin de la grille",x+" : "+y+"  Alive: "+monde.getGrille()[x][y].isAlive());
                 drawCells(x,y,monde.getGrille()[x][y].isAlive());
             }
         }

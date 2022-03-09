@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut63.projetandroidribemontmaulus.R;
+import modele.Dieu;
 
 public class PageSetting extends AppCompatActivity {
     @Override
@@ -18,6 +21,39 @@ public class PageSetting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // ------------------
         setContentView(R.layout.pagesetting);
+
+        LinearLayout bornRuleLayout = (LinearLayout) findViewById(R.id.bornRuleLayout);
+        for (int i = 0; i < 9; i++) {
+            View v = bornRuleLayout.getChildAt(i);
+            if (v instanceof CheckBox) {
+                ((CheckBox) v).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
+                        Log.d("PageSetting","OnCreate: type rule: "+id);
+                        Integer num = Integer.parseInt(id.split("_")[1]);
+                        Dieu.getDieu().getRules().getBornRules()[num] = b;
+                    }
+                });
+            }
+        }
+
+        LinearLayout surviveRuleLayout = (LinearLayout) findViewById(R.id.surviveRuleLayout);
+        int count = surviveRuleLayout.getChildCount();
+        for (int i = 0; i < 9; i++) {
+            View v = surviveRuleLayout.getChildAt(i);
+            if (v instanceof CheckBox) {
+                ((CheckBox) v).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
+                        Log.d("PageSetting","OnCreate: type rule: "+id);
+                        Integer num = Integer.parseInt(id.split("_")[1]);
+                        Dieu.getDieu().getRules().getBornRules()[num] = b;
+                    }
+                });
+            }
+        }
     }
 
     @Override
@@ -59,101 +95,5 @@ public class PageSetting extends AppCompatActivity {
     public void clickBack(View view) {
         Intent monIntent = new Intent(this, FenetreDeJeu.class);
         startActivity(monIntent);
-    }
-
-    public boolean[] recupNbVoisinNaissance(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-        boolean[] rulesVoisin = new boolean[9];
-        switch (view.getId()) {
-            case R.id.checkBox_0_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[0] = true;
-                }
-            case R.id.checkBox_1_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[1] = true;
-                }
-            case R.id.checkBox_2_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[2] = true;
-                }
-
-            case R.id.checkBox_3_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[3] = true;
-                }
-
-            case R.id.checkBox_4_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[4] = true;
-                }
-
-            case R.id.checkBox_5_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[5] = true;
-                }
-
-            case R.id.checkBox_6_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[6] = true;
-                }
-
-            case R.id.checkBox_7_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[7] = true;
-                }
-
-            case R.id.checkBox_8_Voisin_Naitre:
-                if (checked) {
-                    rulesVoisin[8] = true;
-                }
-        }
-        return rulesVoisin;
-    }
-
-    public boolean[] recupNbVoisinMort(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-        boolean[] rulesMort = new boolean[9];
-        switch (view.getId()) {
-            case R.id.checkBox_1_Voisin_Survie:
-                if (checked) {
-                    rulesMort[1] = true;
-                }
-
-            case R.id.checkBox_2_Voisin_Survie:
-                if (checked) {
-                    rulesMort[2] = true;
-                }
-
-            case R.id.checkBox_3_Voisin_Survie:
-                if (checked) {
-                    rulesMort[3] = true;
-                }
-
-            case R.id.checkBox_4_Voisin_Survie:
-                if (checked) {
-                    rulesMort[4] = true;
-                }
-
-            case R.id.checkBox_5_Voisin_Survie:
-                if (checked) {
-                    rulesMort[5] = true;
-                }
-
-            case R.id.checkBox_6_Voisin_Survie:
-                if (checked) {
-                    rulesMort[6] = true;
-                }
-
-            case R.id.checkBox_7_Voisin_Survie:
-                if (checked) {
-                    rulesMort[7] = true;
-                }
-            case R.id.checkBox_8_Voisin_Survie:
-                if (checked) {
-                    rulesMort[8] = true;
-                }
-        }
-        return rulesMort;
     }
 }
