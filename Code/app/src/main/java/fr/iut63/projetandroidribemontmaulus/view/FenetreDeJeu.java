@@ -36,7 +36,7 @@ public class FenetreDeJeu extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 seekBarValue.setText(String.valueOf(progress));
-                FenetreDeJeu.boucleDeJeu.setTime(500 - 490*progress/100);
+                FenetreDeJeu.boucleDeJeu.setTime(500 - 499*progress/100);
             }
 
             @Override

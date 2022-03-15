@@ -26,6 +26,7 @@ public class PageSetting extends AppCompatActivity {
         for (int i = 0; i < 9; i++) {
             View v = bornRuleLayout.getChildAt(i);
             if (v instanceof CheckBox) {
+                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getBornRules()[i]);
                 ((CheckBox) v).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -35,25 +36,23 @@ public class PageSetting extends AppCompatActivity {
                         Dieu.getDieu().getRules().getBornRules()[num] = b;
                     }
                 });
-                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getBornRules()[i]);
             }
         }
 
         LinearLayout surviveRuleLayout = (LinearLayout) findViewById(R.id.surviveRuleLayout);
-        int count = surviveRuleLayout.getChildCount();
         for (int i = 0; i < 9; i++) {
             View v = surviveRuleLayout.getChildAt(i);
             if (v instanceof CheckBox) {
+                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getSurviveRules()[i]);
                 ((CheckBox) v).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
                         Log.d("PageSetting","OnCreate: type rule: "+id);
                         Integer num = Integer.parseInt(id.split("_")[1]);
-                        Dieu.getDieu().getRules().getBornRules()[num] = b;
+                        Dieu.getDieu().getRules().getSurviveRules()[num] = b;
                     }
                 });
-                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getSurviveRules()[i]);
             }
         }
     }
