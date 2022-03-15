@@ -62,12 +62,44 @@ public class PageSetting extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.d("LogAppVie","onStart");
+
+        // Récuération des regles Born à partir du modele
+
+        LinearLayout bornRuleLayout = (LinearLayout) findViewById(R.id.bornRuleLayout);
+        boolean[] bornRules;
+        bornRules = Dieu.getDieu().getRules().getBornRules();
+
+        for(int i = 0; i < 9;i++)
+        {
+            View v = bornRuleLayout.getChildAt(i);
+            if(bornRules[i])
+            {
+                ((CheckBox) v).setChecked(true);
+            }
+        }
+
+        // Récuération des regles Born à partir du modele
+
+        LinearLayout surviveRuleLayout = (LinearLayout) findViewById(R.id.surviveRuleLayout);
+        boolean[] surviveRules;
+        surviveRules = Dieu.getDieu().getRules().getSurviveRules();
+
+        for(int i = 0; i < 9;i++)
+        {
+            View w = surviveRuleLayout.getChildAt(i);
+            if(surviveRules[i])
+            {
+                ((CheckBox) w).setChecked(true);
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.d("LogAppVie","onResume");
+
+        // ------------------------------------
     }
 
     @Override
