@@ -35,6 +35,7 @@ public class PageSetting extends AppCompatActivity {
                         Dieu.getDieu().getRules().getBornRules()[num] = b;
                     }
                 });
+                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getBornRules()[i]);
             }
         }
 
@@ -52,6 +53,7 @@ public class PageSetting extends AppCompatActivity {
                         Dieu.getDieu().getRules().getBornRules()[num] = b;
                     }
                 });
+                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getSurviveRules()[i]);
             }
         }
     }
@@ -93,7 +95,6 @@ public class PageSetting extends AppCompatActivity {
 
 
     public void clickBack(View view) {
-        Intent monIntent = new Intent(this, FenetreDeJeu.class);
-        startActivity(monIntent);
+        this.finish();
     }
 }

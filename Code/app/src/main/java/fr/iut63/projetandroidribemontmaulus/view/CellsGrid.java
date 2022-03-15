@@ -39,7 +39,7 @@ public class CellsGrid extends View { //custome view
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.canvas = canvas;
-        Log.d("Custom View","onDraw");
+//        Log.d("Custom View","onDraw");
 
         Monde monde = Dieu.getDieu().getMonde();
 //        Log.d("Dessin de la grille","TailleX: "+monde.getTailleX() + "  TailleY: "+monde.getTailleY());
