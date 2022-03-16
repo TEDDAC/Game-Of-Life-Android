@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.mainwindow);
 
         //instantiation de tous le modèle
-        Monde monde = new Monde(20,30);
+        Monde monde = new Monde(21,38);
         //initialisation du tableau de proprieté au démarrage (règle de naissances)
         boolean[] born = new boolean[9];
         born[3] = true;

@@ -210,7 +210,7 @@
         app:layout_constraintTop_toBottomOf="@+id/surviveRuleLayout" />
 
     <RadioGroup
-        android:id="@+id/radioGroup3"
+        android:id="@+id/rulesPresets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -219,28 +219,28 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <RadioButton
-            android:id="@+id/choice3.1"
+            android:id="@+id/Default"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Maze" />
+            android:text="@string/Default" />
 
         <RadioButton
-            android:id="@+id/choice3.2"
+            android:id="@+id/Blob"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Maze" />
+            android:text="@string/Blob" />
 
         <RadioButton
-            android:id="@+id/choice3.3"
+            android:id="@+id/Water"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Maze" />
+            android:text="@string/Water" />
 
         <RadioButton
-            android:id="@+id/choice3.4"
+            android:id="@+id/Maze"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Maze" />
+            android:text="@string/Maze" />
 
 
     </RadioGroup>

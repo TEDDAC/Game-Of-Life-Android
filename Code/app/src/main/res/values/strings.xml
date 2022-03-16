@@ -7,4 +7,10 @@
     <string name="speed">Vitesse</string>
     <string name="Play">Play</string>
     <string name="Stop">Stop</string>
+
+    <!-- rules presets names -->
+    <string name="Default">Default</string>
+    <string name="Blob">Blob</string>
+    <string name="Water">Water</string>
+    <string name="Maze">Maze</string>
 </resources>

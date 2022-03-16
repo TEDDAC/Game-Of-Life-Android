@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -18,11 +19,8 @@ import modele.Monde;
 
 public class CellsGrid extends View { //custome view
     private Paint paint;
-    private int nbCellX = 10;
-    private int nbCellY = 20;
-    private int sizeCell = 60;
-    //private int sizeCellY = 50;
-    private int spacing = 20;
+    private int sizeCell = 50;
+    private int spacing = 2;
     private Canvas canvas;
 
     public CellsGrid(Context context, @Nullable AttributeSet attrs) {
@@ -73,5 +71,34 @@ public class CellsGrid extends View { //custome view
         } else this.paint.setColor(0xffffffff);
         //Log.d("CellsGrid drawCells","Draw: "+x+" "+y);
         this.canvas.drawRect(left, top, right, bottom, this.paint);
+
+        //quadrillage
+        this.paint.setColor(0xff000000);
+        //ligne à droite de la cellule
+        this.canvas.drawRect(right, top, right+2, bottom+1, this.paint);
+        //ligne en dessous
+        this.canvas.drawRect(left, bottom, right+1, bottom+2, this.paint);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float viewWidth = this.getMeasuredWidth();
+        float viewHeight = this.getMeasuredHeight();
+//        Log.d("Custom View","onDraw with size> x = " + viewWidth + " y = " + viewHeight);
+        float x = event.getX();
+        float y = event.getY();
+        Monde monde = Dieu.getDieu().getMonde();
+        int cellX = (int)(monde.getTailleX()*x/viewWidth);
+        int cellY = (int)(monde.getTailleY()*y/viewHeight);
+
+        Cellule cell = monde.getGrille()[cellX][cellY];
+        if(cell.isAlive()){
+            cell.setAlive(false);
+        } else cell.setAlive(true);
+
+        this.invalidate();
+
+        Log.d("CellsGrid","Click> x = " + cellX + " y = " + cellY);
+        return super.onTouchEvent(event);
     }
 }

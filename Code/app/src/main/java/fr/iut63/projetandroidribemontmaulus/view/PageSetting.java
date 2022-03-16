@@ -1,12 +1,12 @@
 package fr.iut63.projetandroidribemontmaulus.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,19 +22,19 @@ public class PageSetting extends AppCompatActivity {
         // ------------------
         setContentView(R.layout.pagesetting);
 
+
+        //il faudra mettre
+
         LinearLayout bornRuleLayout = (LinearLayout) findViewById(R.id.bornRuleLayout);
         for (int i = 0; i < 9; i++) {
             View v = bornRuleLayout.getChildAt(i);
             if (v instanceof CheckBox) {
                 ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getBornRules()[i]);
-                ((CheckBox) v).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
-                        Log.d("PageSetting","OnCreate: type rule: "+id);
-                        Integer num = Integer.parseInt(id.split("_")[1]);
-                        Dieu.getDieu().getRules().getBornRules()[num] = b;
-                    }
+                ((CheckBox) v).setOnCheckedChangeListener((compoundButton, b) -> {
+                    String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
+                    Log.d("PageSetting","OnCreate: type rule: "+id);
+                    Integer num = Integer.parseInt(id.split("_")[1]);
+                    Dieu.getDieu().getRules().getBornRules()[num] = b;
                 });
             }
         }
@@ -44,17 +44,21 @@ public class PageSetting extends AppCompatActivity {
             View v = surviveRuleLayout.getChildAt(i);
             if (v instanceof CheckBox) {
                 ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getSurviveRules()[i]);
-                ((CheckBox) v).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
-                        Log.d("PageSetting","OnCreate: type rule: "+id);
-                        Integer num = Integer.parseInt(id.split("_")[1]);
-                        Dieu.getDieu().getRules().getSurviveRules()[num] = b;
-                    }
+                ((CheckBox) v).setOnCheckedChangeListener((compoundButton, b) -> {
+                    String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
+                    Log.d("PageSetting","OnCreate: type rule: "+id);
+                    Integer num = Integer.parseInt(id.split("_")[1]);
+                    Dieu.getDieu().getRules().getSurviveRules()[num] = b;
                 });
             }
         }
+
+
+        RadioGroup radioGroup = (RadioGroup)findViewById(R.id.rulesPresets);
+        radioGroup.setOnCheckedChangeListener((RadioGroup group, int checkedId) -> {
+            Log.d("Settings","RadioGroup Changed: new checked is " + getResources().getResourceName(checkedId));
+        });
+
     }
 
     @Override

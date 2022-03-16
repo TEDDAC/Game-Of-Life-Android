@@ -3,6 +3,7 @@ package fr.iut63.projetandroidribemontmaulus.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -36,7 +37,7 @@ public class FenetreDeJeu extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 seekBarValue.setText(String.valueOf(progress));
-                FenetreDeJeu.boucleDeJeu.setTime(500 - 499*progress/100);
+                FenetreDeJeu.boucleDeJeu.setTime(500 - 500*progress/100);
             }
 
             @Override
