@@ -1,4 +1,12 @@
 <resources>
+
+
+    <!-- Home page -->
+
+    <string name="Commencer">Commencer</string>
+    <string name="welcome">Bienvenue sur le jeu de la vie</string>
+
+
     <string name="app_name">ProjetAndroidRibemontMaulus</string>
     <string name="settings">Paramètres</string>
     <string name="howManyNeighboorToBorn">Nombre de voisines pour naître</string>
@@ -7,10 +15,23 @@
     <string name="speed">Vitesse</string>
     <string name="Play">Play</string>
     <string name="Stop">Stop</string>
+    <string name="Back">Back</string>
 
     <!-- rules presets names -->
     <string name="Default">Default</string>
     <string name="Blob">Blob</string>
     <string name="Water">Water</string>
     <string name="Maze">Maze</string>
+
+    <!-- Number -->
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="tree">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+
 </resources>
