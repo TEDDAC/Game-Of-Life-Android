@@ -43,9 +43,10 @@ public class BoucleDeJeu implements Runnable{
     public void run() {
         while(enable){
             if(BoucleDeJeu.getPlayed()){
+
                 dieu.evolution();
                 dieu.updateCells();
-                cellsGrid.invalidate();
+                cellsGrid.postInvalidate();
             }
             try { //ne pas mettre dans la boucle, sinon ça ne tourne pas
                 Thread.sleep(getTime());
