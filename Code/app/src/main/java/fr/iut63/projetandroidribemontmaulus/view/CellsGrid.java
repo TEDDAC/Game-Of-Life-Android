@@ -24,9 +24,14 @@ public class CellsGrid extends View implements Notifiable { //custom view
     private int spacing = 2;
     private Canvas canvas;
 
+    float viewWidth;
+    float viewHeight;
+
     public CellsGrid(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
+
+//        Log.d("CellsGrid","Construction");
     }
 
     private void init(){
@@ -38,7 +43,7 @@ public class CellsGrid extends View implements Notifiable { //custom view
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.canvas = canvas;
-//        Log.d("Custom View","onDraw");
+//        Log.d("CellsGrid","onDraw");
 
         Monde monde = Dieu.getDieu().getMonde();
 //        Log.d("Dessin de la grille","TailleX: "+monde.getTailleX() + "  TailleY: "+monde.getTailleY());
@@ -54,6 +59,17 @@ public class CellsGrid extends View implements Notifiable { //custom view
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        this.viewWidth = this.getMeasuredWidth();
+        this.viewHeight = this.getMeasuredHeight();
+        Log.d("CellsGrid",this.viewWidth + ":" + this.viewHeight);
+
+        int nbCellsX = (int)(this.viewWidth/(this.sizeCell+this.spacing));
+        int nbCellsY = (int)(this.viewHeight/(this.sizeCell+this.spacing));
+
+        Log.d("CellsGrid",nbCellsX + ":" + nbCellsY);
+
+        Dieu.getDieu().setMonde(new Monde(nbCellsX,nbCellsY));
     }
 
     @Override
@@ -89,15 +105,15 @@ public class CellsGrid extends View implements Notifiable { //custom view
         float x = event.getX();
         float y = event.getY();
         Monde monde = Dieu.getDieu().getMonde();
-        int cellX = (int)(monde.getTailleX()*x/viewWidth);
-        int cellY = (int)(monde.getTailleY()*y/viewHeight);
+        int cellX = (int)(monde.getTailleX()*x/((this.sizeCell+this.spacing)*monde.getTailleX()));
+        int cellY = (int)(monde.getTailleY()*y/((this.sizeCell+this.spacing)*monde.getTailleY()));
 
         Cellule cell = monde.getGrille()[cellX][cellY];
         if(cell.isAlive()){
             cell.setAlive(false);
         } else cell.setAlive(true);
 
-        this.invalidate();
+        this.postInvalidate();
 
         Log.d("CellsGrid","Click> x = " + cellX + " y = " + cellY);
         return super.onTouchEvent(event);

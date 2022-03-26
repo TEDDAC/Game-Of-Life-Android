@@ -13,6 +13,7 @@ import fr.iut63.projetandroidribemontmaulus.view.FenetreDeJeu;
 import modele.Dieu;
 import modele.Monde;
 import modele.Rules;
+import modele.Stub;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,21 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.mainwindow);
 
         //instantiation de tous le modèle
-        Monde monde = new Monde(21,38);
-        //initialisation du tableau de proprieté au démarrage (règle de naissances)
-        boolean[] born = new boolean[9];
-        born[3] = true;
-        //initialisation du tableau de proprieté au démarrage (règle de survie)
-        boolean[] survive = new boolean[9];
-        survive[2] = true;
-        survive[3] = true;
+        Monde monde = new Monde(0,0);
 
-
-        //Appel de la méthode createModelGrille
-        monde = createModelGrille(1,monde);
-
-
-        Rules rules = new Rules(born,survive);
+        Rules rules = Stub.configRules().get("Default");
         Dieu dieu = new Dieu(monde, rules);
         Log.d("Fenetre de jeu","Dieu créé");
 
@@ -80,31 +69,4 @@ public class MainActivity extends AppCompatActivity {
         Intent monIntent = new Intent(this, FenetreDeJeu.class);
         startActivity(monIntent);
     }
-
-
-    // Créateur de monde
-
-    public Monde createModelGrille(int number,Monde monde){
-        switch (number){
-            case(1):
-                monde.getGrille()[0][2].setAlive(true);
-                monde.getGrille()[1][2].setAlive(true);
-                monde.getGrille()[2][2].setAlive(true);
-                monde.getGrille()[2][1].setAlive(true);
-                monde.getGrille()[1][0].setAlive(true);
-                break;
-
-            case(2):
-                monde.getGrille()[0][3].setAlive(true);
-                monde.getGrille()[2][2].setAlive(true);
-                monde.getGrille()[0][0].setAlive(true);
-                monde.getGrille()[1][1].setAlive(true);
-                monde.getGrille()[4][2].setAlive(true);
-                break;
-        }
-        return monde;
-
-
-    }
-
 }
