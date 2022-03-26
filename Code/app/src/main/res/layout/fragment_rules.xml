@@ -29,62 +29,62 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/zero" />
+            android:text="0" />
 
         <CheckBox
             android:id="@+id/checkBox_1_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/one" />
+            android:text="1" />
 
         <CheckBox
             android:id="@+id/checkBox_2_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/two" />
+            android:text="2" />
 
         <CheckBox
             android:id="@+id/checkBox_3_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/tree" />
+            android:text="3" />
 
         <CheckBox
             android:id="@+id/checkBox_4_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/four" />
+            android:text="4" />
 
         <CheckBox
             android:id="@+id/checkBox_5_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/five" />
+            android:text="5" />
 
         <CheckBox
             android:id="@+id/checkBox_6_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/six" />
+            android:text="6" />
 
         <CheckBox
             android:id="@+id/checkBox_7_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/seven" />
+            android:text="7" />
 
         <CheckBox
             android:id="@+id/checkBox_8_Voisin_Naitre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/eight" />
+            android:text="8" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,15 +23,9 @@
     <string name="Water">Water</string>
     <string name="Maze">Maze</string>
 
-    <!-- Number -->
-    <string name="zero">0</string>
-    <string name="one">1</string>
-    <string name="two">2</string>
-    <string name="tree">3</string>
-    <string name="four">4</string>
-    <string name="five">5</string>
-    <string name="six">6</string>
-    <string name="seven">7</string>
-    <string name="eight">8</string>
+    <string name="Load">Charger</string>
+    <string name="Save">Sauvegarder</string>
+    <string name="Cancel">Annuler</string>
+    <string name="Filename">Nom du fichier</string>
 
 </resources>
