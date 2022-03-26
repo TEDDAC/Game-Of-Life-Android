@@ -16,8 +16,9 @@ import fr.iut63.projetandroidribemontmaulus.R;
 import modele.Cellule;
 import modele.Dieu;
 import modele.Monde;
+import modele.Notifiable;
 
-public class CellsGrid extends View { //custome view
+public class CellsGrid extends View implements Notifiable { //custom view
     private Paint paint;
     private int sizeCell = 50;
     private int spacing = 2;
@@ -100,5 +101,10 @@ public class CellsGrid extends View { //custome view
 
         Log.d("CellsGrid","Click> x = " + cellX + " y = " + cellY);
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void notifier() {
+        this.postInvalidate();
     }
 }

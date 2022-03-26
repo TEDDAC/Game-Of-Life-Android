@@ -1,5 +1,8 @@
 package modele;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import fr.iut63.projetandroidribemontmaulus.view.CellsGrid;
 
 public class BoucleDeJeu implements Runnable{
@@ -8,7 +11,8 @@ public class BoucleDeJeu implements Runnable{
      * Instance du dieu
      */
     private final Dieu dieu;
-    private CellsGrid cellsGrid;
+
+    private LinkedList<Notifiable> listener;
 
     private boolean enable;
     public boolean isEnable(){ return enable; }
@@ -34,6 +38,7 @@ public class BoucleDeJeu implements Runnable{
         this.dieu = dieu;
         setTime(500);
         this.enable = true;
+        this.listener = new LinkedList<>();
     }
 
     /**
@@ -46,7 +51,9 @@ public class BoucleDeJeu implements Runnable{
 
                 dieu.evolution();
                 dieu.updateCells();
-                cellsGrid.postInvalidate();
+                for (Notifiable notifiable : this.listener){
+                    notifiable.notifier();
+                }
             }
             try { //ne pas mettre dans la boucle, sinon ça ne tourne pas
                 Thread.sleep(getTime());
@@ -68,7 +75,11 @@ public class BoucleDeJeu implements Runnable{
         this.enable = false;
     }
 
-    public void setCellsGrid(CellsGrid cellsGrid) {
-        this.cellsGrid = cellsGrid;
+    public void addNotifiableListener(Notifiable element){
+        this.listener.add(element);
+    }
+
+    public void remosteNotifiableListener(Notifiable element){
+        this.listener.remove(element);
     }
 }

@@ -17,6 +17,7 @@ import fr.iut63.projetandroidribemontmaulus.R;
 import modele.BoucleDeJeu;
 import modele.Dieu;
 import modele.Monde;
+import modele.Notifiable;
 import modele.Rules;
 
 public class FenetreDeJeu extends AppCompatActivity {
@@ -56,7 +57,16 @@ public class FenetreDeJeu extends AppCompatActivity {
         final Button playButton = (Button)findViewById(R.id.startButton);
 
         boucleDeJeu = new BoucleDeJeu(dieu);
-        boucleDeJeu.setCellsGrid(cellsGrid);
+        boucleDeJeu.addNotifiableListener(cellsGrid);
+
+        //test de l'observer
+        /*boucleDeJeu.addNotifiableListener(new Notifiable() {
+            @Override
+            public void notifier() {
+                Log.d("Notification boucle de jeu", "beep");
+            }
+        });*/
+
         Thread thread = new Thread(boucleDeJeu);
         thread.start();
         playButton.setOnClickListener(view -> {
