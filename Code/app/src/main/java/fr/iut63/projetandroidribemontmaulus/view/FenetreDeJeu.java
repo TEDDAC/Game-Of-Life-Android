@@ -24,6 +24,7 @@ public class FenetreDeJeu extends AppCompatActivity {
 //    Manager manager = new Manager();
     public CellsGrid cellsGrid;
     public static BoucleDeJeu boucleDeJeu;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

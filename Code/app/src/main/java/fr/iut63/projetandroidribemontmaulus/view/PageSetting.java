@@ -12,17 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+
 import fr.iut63.projetandroidribemontmaulus.R;
 import modele.Dieu;
+import modele.Rules;
+import modele.Stub;
 
 public class PageSetting extends AppCompatActivity {
+    private HashMap<String, Rules> rulesPresets= new HashMap<String, Rules>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // ------------------
         setContentView(R.layout.pagesetting);
 
-
+        this.rulesPresets = Stub.configRules();
         //il faudra mettre
 
         LinearLayout bornRuleLayout = (LinearLayout) findViewById(R.id.bornRuleLayout);
@@ -56,7 +62,9 @@ public class PageSetting extends AppCompatActivity {
 
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.rulesPresets);
         radioGroup.setOnCheckedChangeListener((RadioGroup group, int checkedId) -> {
-            Log.d("Settings","RadioGroup Changed: new checked is " + getResources().getResourceName(checkedId));
+            String choice = getResources().getResourceName(checkedId).split("/")[1];
+            Log.d("Settings","RadioGroup Changed: new checked is " + choice);
+            Dieu.getDieu().setRules(this.rulesPresets.get(choice));
         });
 
     }
