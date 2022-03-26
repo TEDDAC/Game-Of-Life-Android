@@ -62,7 +62,6 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
                     .replace(R.id.fragmentBornRules, FragmentRules.class, bundleBorn)
                     .replace(R.id.fragmentSurvivesRules, FragmentRules.class, bundleSurvive)
                     .commit();
-            Log.d("PageSetting","Debug > Survive créé");
         }
     }
 
