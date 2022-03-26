@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 
 public class Dieu {
@@ -17,6 +18,8 @@ public class Dieu {
      * Contient les règles de naissance et de survie de cellules
      */
     private Rules rules;
+
+    private LinkedList<Notifiable> onRulesChangeListener;
 
     /**
      * Contient les cellules qui ont été traitées, et dont le prochain état a est determiné
@@ -33,6 +36,7 @@ public class Dieu {
         this.rules = rules;
         this.traite = new ArrayList<>();
         this.dieuInstance = this;
+        this.onRulesChangeListener = new LinkedList<>();
     }
 
     public static Dieu getDieu(){
@@ -140,6 +144,7 @@ public class Dieu {
      */
     public void setRules(Rules rules) {
         this.rules = rules;
+        notifyOnRuleChange();
     }
 
     /**
@@ -174,5 +179,17 @@ public class Dieu {
         this.monde = monde;
     }
 
+    public void addOnRuleChangeListener(Notifiable notifiable){
+        onRulesChangeListener.add(notifiable);
+    }
 
+    public void removeOnRuleChangeListener(Notifiable notifiable){
+        onRulesChangeListener.remove(notifiable);
+    }
+
+    public void notifyOnRuleChange(){
+        for(Notifiable notifiable : onRulesChangeListener){
+            notifiable.notifier();
+        }
+    }
 }

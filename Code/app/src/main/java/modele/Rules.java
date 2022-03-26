@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.LinkedList;
+
 public class Rules {
     /**
      * Règle de naissance des cellules.
@@ -34,15 +36,7 @@ public class Rules {
         return this.bornRules;
     }
 
-    public void setBornRules(int i,boolean rules){
-        bornRules[i] = rules;
-    }
-
     public boolean[] getSurviveRules(){
         return this.surviveRules;
-    }
-
-    public void setSurviveRules(int i,boolean rules){
-        surviveRules[i] = rules;
     }
 }

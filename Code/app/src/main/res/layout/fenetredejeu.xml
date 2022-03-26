@@ -10,7 +10,7 @@
         android:id="@+id/cellsGrid"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/RulesPresets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/RulesPresets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/RulesPresets"
+        app:layout_constraintStart_toEndOf="@+id/RulesPresets" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,22 +4,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import java.util.HashMap;
 
 import fr.iut63.projetandroidribemontmaulus.R;
 import modele.Dieu;
+import modele.Notifiable;
 import modele.Rules;
 import modele.Stub;
 
-public class PageSetting extends AppCompatActivity {
+public class PageSetting extends AppCompatActivity implements Notifiable {
     private HashMap<String, Rules> rulesPresets= new HashMap<String, Rules>();
 
     @Override
@@ -29,36 +30,8 @@ public class PageSetting extends AppCompatActivity {
         setContentView(R.layout.pagesetting);
 
         this.rulesPresets = Stub.configRules();
-        //il faudra mettre
 
-        LinearLayout bornRuleLayout = (LinearLayout) findViewById(R.id.bornRuleLayout);
-        for (int i = 0; i < 9; i++) {
-            View v = bornRuleLayout.getChildAt(i);
-            if (v instanceof CheckBox) {
-                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getBornRules()[i]);
-                ((CheckBox) v).setOnCheckedChangeListener((compoundButton, b) -> {
-                    String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
-                    Log.d("PageSetting","OnCreate: type rule: "+id);
-                    Integer num = Integer.parseInt(id.split("_")[1]);
-                    Dieu.getDieu().getRules().getBornRules()[num] = b;
-                });
-            }
-        }
-
-        LinearLayout surviveRuleLayout = (LinearLayout) findViewById(R.id.surviveRuleLayout);
-        for (int i = 0; i < 9; i++) {
-            View v = surviveRuleLayout.getChildAt(i);
-            if (v instanceof CheckBox) {
-                ((CheckBox)v).setChecked(Dieu.getDieu().getRules().getSurviveRules()[i]);
-                ((CheckBox) v).setOnCheckedChangeListener((compoundButton, b) -> {
-                    String id = compoundButton.getResources().getResourceName(compoundButton.getId()).split("/")[1];
-                    Log.d("PageSetting","OnCreate: type rule: "+id);
-                    Integer num = Integer.parseInt(id.split("_")[1]);
-                    Dieu.getDieu().getRules().getSurviveRules()[num] = b;
-                });
-            }
-        }
-
+        instantiateFragment(savedInstanceState);
 
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.rulesPresets);
         radioGroup.setOnCheckedChangeListener((RadioGroup group, int checkedId) -> {
@@ -67,42 +40,36 @@ public class PageSetting extends AppCompatActivity {
             Dieu.getDieu().setRules(this.rulesPresets.get(choice));
         });
 
+        Dieu.getDieu().addOnRuleChangeListener(this);
+    }
+
+    private void instantiateFragment(@Nullable Bundle savedInstanceState) {
+        if(savedInstanceState == null){
+            Log.d("PageSetting","Debug > Création fragment");
+
+            //argument pour fragmentBornRules
+            Bundle bundleBorn = new Bundle();
+            bundleBorn.putString("text_to_show",getResources().getText(R.string.howManyNeighboorToBorn).toString());
+            bundleBorn.putBooleanArray("arrayToBind",Dieu.getDieu().getRules().getBornRules());
+
+            //argument pour fragmentSurvivesRules
+            Bundle bundleSurvive = new Bundle();
+            bundleSurvive.putString("text_to_show",getResources().getText(R.string.howManyNeighboorToSurvive).toString());
+            bundleSurvive.putBooleanArray("arrayToBind",Dieu.getDieu().getRules().getSurviveRules());
+
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragmentBornRules, FragmentRules.class, bundleBorn)
+                    .replace(R.id.fragmentSurvivesRules, FragmentRules.class, bundleSurvive)
+                    .commit();
+            Log.d("PageSetting","Debug > Survive créé");
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Log.d("LogAppVie","onStart");
-
-        // Récuération des regles Born à partir du modele
-
-        LinearLayout bornRuleLayout = (LinearLayout) findViewById(R.id.bornRuleLayout);
-        boolean[] bornRules;
-        bornRules = Dieu.getDieu().getRules().getBornRules();
-
-        for(int i = 0; i < 9;i++)
-        {
-            View v = bornRuleLayout.getChildAt(i);
-            if(bornRules[i])
-            {
-                ((CheckBox) v).setChecked(true);
-            }
-        }
-
-        // Récuération des regles Born à partir du modele
-
-        LinearLayout surviveRuleLayout = (LinearLayout) findViewById(R.id.surviveRuleLayout);
-        boolean[] surviveRules;
-        surviveRules = Dieu.getDieu().getRules().getSurviveRules();
-
-        for(int i = 0; i < 9;i++)
-        {
-            View w = surviveRuleLayout.getChildAt(i);
-            if(surviveRules[i])
-            {
-                ((CheckBox) w).setChecked(true);
-            }
-        }
     }
 
     @Override
@@ -136,8 +103,12 @@ public class PageSetting extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-
     public void clickBack(View view) {
         this.finish();
+    }
+
+    @Override
+    public void notifier() {
+        instantiateFragment(null);
     }
 }
