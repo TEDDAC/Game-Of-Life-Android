@@ -11,8 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import fr.iut63.projetandroidribemontmaulus.R;
 import modele.Dieu;
@@ -23,11 +28,36 @@ import modele.Stub;
 public class PageSetting extends AppCompatActivity implements Notifiable {
     private HashMap<String, Rules> rulesPresets= new HashMap<String, Rules>();
 
+    private RecyclerView mRecycleView;
+    private List<String> mesMotifs;
+    private MotifsAdapter monAdapter;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // ------------------
+
         setContentView(R.layout.pagesetting);
+
+        // Recycle view begin :
+
+        mRecycleView = (RecyclerView)findViewById(R.id.myRecyclerView);
+
+        mesMotifs = new ArrayList<>();
+
+        mesMotifs.add("Motifs");
+        mesMotifs.add("Motifs");
+        mesMotifs.add("Motifs");
+
+        monAdapter = new MotifsAdapter(mesMotifs);
+
+        mRecycleView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mRecycleView.setAdapter(monAdapter);
+
+
+
+
+        // Recycle view end
 
         this.rulesPresets = Stub.configRules();
 
