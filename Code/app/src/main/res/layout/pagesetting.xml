@@ -28,8 +28,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="410dp"
-        android:layout_height="520dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fillViewport="false"
         android:scrollbarStyle="outsideInset"
         app:layout_constraintBottom_toTopOf="@+id/backButton"
@@ -54,45 +54,57 @@
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_rules" />
 
-            <TextView
-                android:id="@+id/RulesPresets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:text="@string/rulePresets" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <RadioGroup
-                android:id="@+id/rulesPresets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/RulesPresets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/rulePresets"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioButton
-                    android:id="@+id/Default"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/Default" />
+                <RadioGroup
+                    android:id="@+id/rulesPresets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/RulesPresets">
 
-                <RadioButton
-                    android:id="@+id/Blob"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/Blob" />
+                    <RadioButton
+                        android:id="@+id/Default"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/Default" />
 
-                <RadioButton
-                    android:id="@+id/Water"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/Water" />
+                    <RadioButton
+                        android:id="@+id/Blob"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/Blob" />
 
-                <RadioButton
-                    android:id="@+id/Maze"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/Maze" />
+                    <RadioButton
+                        android:id="@+id/Water"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/Water" />
+
+                    <RadioButton
+                        android:id="@+id/Maze"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/Maze" />
 
 
-            </RadioGroup>
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
