@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.recyclerview.selection.ItemKeyProvider;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.selection.StableIdKeyProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,19 +49,19 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
 
         mesMotifs = new ArrayList<>();
 
-        mesMotifs.add("Motifs");
-        mesMotifs.add("Motifs");
-        mesMotifs.add("Motifs");
+        for(File fichier : getFilesDir().listFiles()){
+//            Log.d("SaverDialogFragment","fichier > " + fichier.getName());
+            mesMotifs.add(fichier.getName());
+        }
 
         monAdapter = new MotifsAdapter(mesMotifs);
 
         mRecycleView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mRecycleView.setAdapter(monAdapter);
 
-
-
-
         // Recycle view end
+        //selection tracker
+
 
         this.rulesPresets = Stub.configRules();
 
@@ -94,7 +97,7 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
             bundleSurvive.putString("text_to_show",getResources().getText(R.string.howManyNeighboorToSurvive).toString());
             bundleSurvive.putBooleanArray("arrayToBind",Dieu.getDieu().getRules().getSurviveRules());
 
-            getSupportFragmentManager().beginTransaction()
+            this.getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
                     .replace(R.id.fragmentBornRules, FragmentRules.class, bundleBorn)
                     .replace(R.id.fragmentSurvivesRules, FragmentRules.class, bundleSurvive)
