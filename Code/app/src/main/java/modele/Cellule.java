@@ -9,7 +9,7 @@ public class Cellule {
     /**
      * Etat de la cellule (en vie ou morte).
      */
-    private Boolean alive;
+    private boolean alive;
     /**
      * Coordonnée X de la cellule dans la grille
      */
@@ -52,7 +52,7 @@ public class Cellule {
      * @return True si elle est en vie, false sinon
      */
     public boolean isAlive() {
-        return getAlive();
+        return this.alive;
     }
 
 
@@ -108,9 +108,5 @@ public class Cellule {
 
     public void setAlive(boolean alive){
         this.alive = alive;
-    }
-
-    public boolean getAlive(){
-        return this.alive;
     }
 }

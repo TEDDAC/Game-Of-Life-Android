@@ -56,8 +56,9 @@ public class FenetreDeJeu extends AppCompatActivity {
         Dieu dieu = Dieu.getDieu();
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
 
-        boucleDeJeu = new BoucleDeJeu(dieu);
+        boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.addNotifiableListener(cellsGrid);
+        boucleDeJeu.addNotifiableListener(dieu);
 
         //test de l'observer
         /*boucleDeJeu.addNotifiableListener(new Notifiable() {
