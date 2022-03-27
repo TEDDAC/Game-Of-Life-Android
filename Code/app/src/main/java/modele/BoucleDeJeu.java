@@ -40,15 +40,19 @@ public class BoucleDeJeu implements Runnable{
     public void run() {
         while(enable){
             if(this.getPlayed()){
-                for (Notifiable notifiable : this.listener){
-                    notifiable.notifier();
-                }
+                notifierListener();
             }
             try { //ne pas mettre dans la boucle, sinon ça ne tourne pas
                 Thread.sleep(getTime());
             } catch(Exception e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void notifierListener(){
+        for (Notifiable notifiable : this.listener){
+            notifiable.notifier();
         }
     }
 

@@ -80,8 +80,8 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
 
             this.getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.fragmentBornRules, FragmentRules.class, bundleBorn)
-                    .replace(R.id.fragmentSurvivesRules, FragmentRules.class, bundleSurvive)
+                    .add(R.id.fragmentBornRules, FragmentRules.class, bundleBorn)
+                    .add(R.id.fragmentSurvivesRules, FragmentRules.class, bundleSurvive)
                     .commit();
         }
     }
@@ -129,6 +129,7 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
 
     @Override
     public void notifier() {
-        instantiateFragment(null);
+//        instantiateFragment(null);
+        this.finish();
     }
 }
