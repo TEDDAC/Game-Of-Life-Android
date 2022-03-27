@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 
-public class Dieu {
-    public static Dieu dieuInstance;
+public class Dieu implements Notifiable{
+    private static Dieu dieuInstance;
 
     /**
      * Contient la grille de cellule et ses dimensions
@@ -46,17 +46,6 @@ public class Dieu {
             Log.d("getDieu","Nouveau dieu créé");
             dieuInstance = new Dieu(null, null);
             return dieuInstance;
-        }
-    }
-
-    /**
-     * permet de tuer toutes les cellules, donc de nettoyer la grille
-     */
-    public void clearGrid() {
-        for(int x=0;x<monde.getTailleX();x++){
-            for(int y=0;y<monde.getTailleY();y++){
-                monde.getGrille()[x][y].setAlive(false);
-            }
         }
     }
 
@@ -191,5 +180,11 @@ public class Dieu {
         for(Notifiable notifiable : onRulesChangeListener){
             notifiable.notifier();
         }
+    }
+
+    @Override
+    public void notifier() {
+        getDieu().evolution();
+        getDieu().updateCells();
     }
 }

@@ -23,15 +23,6 @@ public class Rules {
         this.surviveRules = surviveRules;
     }
 
-    /**
-     * Permet de changer les règles du jeu, sans regénérer une nouvelle instance et devoir refaire le binding de la vue.
-     * @param newRules Nouvelles règles à appliquer
-     */
-    public void switchRulesTo(Rules newRules){
-        this.bornRules = newRules.getBornRules();
-        this.surviveRules = newRules.getSurviveRules();
-    }
-
     public boolean[] getBornRules(){
         return this.bornRules;
     }

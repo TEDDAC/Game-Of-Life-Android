@@ -6,12 +6,6 @@ import java.util.List;
 import fr.iut63.projetandroidribemontmaulus.view.CellsGrid;
 
 public class BoucleDeJeu implements Runnable{
-
-    /**
-     * Instance du dieu
-     */
-    private final Dieu dieu;
-
     private LinkedList<Notifiable> listener;
 
     private boolean enable;
@@ -21,9 +15,9 @@ public class BoucleDeJeu implements Runnable{
     /**
      * Indique à la pause si elle est lancé ou non
      */
-    public static boolean played = false;
-    public static boolean getPlayed(){ return played; }
-    public static void setPlayed(boolean valeur){ played = valeur;}
+    private boolean played = false;
+    public boolean getPlayed(){ return played; }
+    public void setPlayed(boolean value){ played = value;}
 
     /**
      * Période entre chaque répétition de la boucle
@@ -32,10 +26,8 @@ public class BoucleDeJeu implements Runnable{
 
     /**
      * Constructeur de la boucle de jeu
-     * @param dieu Le dieu qui sera modifié par la boucle de jeu.
      */
-    public BoucleDeJeu(Dieu dieu){
-        this.dieu = dieu;
+    public BoucleDeJeu(){
         setTime(500);
         this.enable = true;
         this.listener = new LinkedList<>();
@@ -47,10 +39,7 @@ public class BoucleDeJeu implements Runnable{
     @Override
     public void run() {
         while(enable){
-            if(BoucleDeJeu.getPlayed()){
-
-                dieu.evolution();
-                dieu.updateCells();
+            if(this.getPlayed()){
                 for (Notifiable notifiable : this.listener){
                     notifiable.notifier();
                 }
@@ -71,15 +60,11 @@ public class BoucleDeJeu implements Runnable{
         return this.time;
     }
 
-    public void stop(){
-        this.enable = false;
-    }
-
     public void addNotifiableListener(Notifiable element){
         this.listener.add(element);
     }
 
-    public void remosteNotifiableListener(Notifiable element){
+    public void removeNotifiableListener(Notifiable element){
         this.listener.remove(element);
     }
 }
