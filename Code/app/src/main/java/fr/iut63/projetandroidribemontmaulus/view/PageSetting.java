@@ -32,36 +32,11 @@ import modele.Stub;
 public class PageSetting extends AppCompatActivity implements Notifiable {
     private HashMap<String, Rules> rulesPresets= new HashMap<String, Rules>();
 
-    private RecyclerView mRecycleView;
-    private List<String> mesMotifs;
-    private MotifsAdapter monAdapter;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.pagesetting);
-
-        // Recycle view begin :
-
-        mRecycleView = (RecyclerView)findViewById(R.id.myRecyclerView);
-
-        mesMotifs = new ArrayList<>();
-
-        for(File fichier : getFilesDir().listFiles()){
-//            Log.d("SaverDialogFragment","fichier > " + fichier.getName());
-            mesMotifs.add(fichier.getName());
-        }
-
-        monAdapter = new MotifsAdapter(mesMotifs);
-
-        mRecycleView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        mRecycleView.setAdapter(monAdapter);
-
-        // Recycle view end
-        //selection tracker
-
 
         this.rulesPresets = Stub.configRules();
 
@@ -76,10 +51,16 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
 
         Dieu.getDieu().addOnRuleChangeListener(this);
 
-        Button saverButton = (Button)findViewById(R.id.SaverButton);
+        Button saverButton = findViewById(R.id.SaverButton);
         saverButton.setOnClickListener(view -> {
             SaverDialogFragment saverDialog = new SaverDialogFragment();
             saverDialog.show(getSupportFragmentManager(),"SaverDialogFragment");
+        });
+
+        Button loaderButton = findViewById(R.id.loadButton);
+        loaderButton.setOnClickListener(view -> {
+            LoaderDialogFragment loaderDialog = new LoaderDialogFragment();
+            loaderDialog.show(getSupportFragmentManager(),"LoaderDialogFragment");
         });
     }
 
