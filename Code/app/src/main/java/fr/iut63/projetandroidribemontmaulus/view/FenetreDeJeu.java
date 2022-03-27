@@ -55,7 +55,6 @@ public class FenetreDeJeu extends AppCompatActivity {
 
         Dieu dieu = Dieu.getDieu();
         cellsGrid = (CellsGrid) findViewById(R.id.cellsGrid);
-        final Button playButton = (Button)findViewById(R.id.startButton);
 
         boucleDeJeu = new BoucleDeJeu(dieu);
         boucleDeJeu.addNotifiableListener(cellsGrid);
@@ -70,6 +69,8 @@ public class FenetreDeJeu extends AppCompatActivity {
 
         Thread thread = new Thread(boucleDeJeu);
         thread.start();
+
+        final Button playButton = (Button)findViewById(R.id.startButton);
         playButton.setOnClickListener(view -> {
             Log.d("PlayButton OnClick","Clicked");
             if(!FenetreDeJeu.boucleDeJeu.getPlayed()){ //stopped
@@ -92,6 +93,9 @@ public class FenetreDeJeu extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("LogAppVie", "onResume");
+
+        final Button playButton = (Button)findViewById(R.id.startButton);
+        playButton.setText(R.string.Play);
     }
 
     @Override

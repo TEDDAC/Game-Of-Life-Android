@@ -3,6 +3,7 @@ package fr.iut63.projetandroidribemontmaulus.view;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -71,6 +72,12 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
         });
 
         Dieu.getDieu().addOnRuleChangeListener(this);
+
+        Button saverButton = (Button)findViewById(R.id.SaverButton);
+        saverButton.setOnClickListener(view -> {
+            SaverDialogFragment saverDialog = new SaverDialogFragment();
+            saverDialog.show(getSupportFragmentManager(),"SaverDialogFragment");
+        });
     }
 
     private void instantiateFragment(@Nullable Bundle savedInstanceState) {
@@ -92,7 +99,6 @@ public class PageSetting extends AppCompatActivity implements Notifiable {
                     .replace(R.id.fragmentBornRules, FragmentRules.class, bundleBorn)
                     .replace(R.id.fragmentSurvivesRules, FragmentRules.class, bundleSurvive)
                     .commit();
-            Log.d("PageSetting","Debug > Survive créé");
         }
     }
 
