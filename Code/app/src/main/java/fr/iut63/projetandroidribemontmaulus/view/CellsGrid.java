@@ -1,5 +1,6 @@
 package fr.iut63.projetandroidribemontmaulus.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -78,19 +79,20 @@ public class CellsGrid extends View implements Notifiable { //custom view
     }
 
     // ne pas utiliser manuellement, uniquement dans le ondraw
+    @SuppressLint("ResourceAsColor")
     public void drawCells(int x, int y, boolean alive){
         int left = (this.sizeCell + this.spacing)*x;
         int top = (this.sizeCell + this.spacing)*y;
         int right = left + this.sizeCell;
         int bottom = top + this.sizeCell;
         if(alive){
-            this.paint.setColor(0xff000000);
-        } else this.paint.setColor(0xffffffff);
+            this.paint.setColor(getResources().getColor(R.color.gridForeground));
+        } else this.paint.setColor(getResources().getColor(R.color.gridBackground));
         //Log.d("CellsGrid drawCells","Draw: "+x+" "+y);
         this.canvas.drawRect(left, top, right, bottom, this.paint);
 
         //quadrillage
-        this.paint.setColor(0xff000000);
+        this.paint.setColor(getResources().getColor(R.color.gridForeground));
         //ligne à droite de la cellule
         this.canvas.drawRect(right, top, right+2, bottom+1, this.paint);
         //ligne en dessous
